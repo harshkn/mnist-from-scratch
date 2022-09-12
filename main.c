@@ -11,21 +11,33 @@
 int main() {
 	srand(time(NULL));
 
-	//TRAINING
-	// int number_imgs = 10000;
-	// Img** imgs = csv_to_imgs("data/mnist_test.csv", number_imgs);
-	// NeuralNetwork* net = network_create(784, 300, 10);
-	// network_train_batch_imgs(net, imgs, number_imgs);
-	// network_save(net, "testing_net");
+	// int isTraining = 0; // set this to 1 for training
 
-	// PREDICTING
-	// int number_imgs = 3000;
-	// Img** imgs = csv_to_imgs("data/mnist_test.csv", number_imgs);
-	// NeuralNetwork* net = network_load("testing_net");
-	// double score = network_predict_imgs(net, imgs, 1000);
-	// printf("Score: %1.5f", score);
+	// if(isTraining)
+	// {	// TRAINING
+	// 	int number_imgs = 10000;
+	// 	Img** imgs = csv_to_imgs("data/mnist_test.csv", number_imgs);
+	// 	NeuralNetwork* net = network_create(784, 300, 10, 0.01);
+	// 	network_train_batch_imgs(net, imgs, number_imgs);
+	// 	network_save(net, "testing_net");
+	// 	imgs_free(imgs, number_imgs);
+	// 	network_free(net);
+	// }
+	// else
+	// {
 
-	// imgs_free(imgs, number_imgs);
-	// network_free(net);
+
+		// PREDICTING
+		int number_imgs = 3000;
+		Img** imgs = csv_to_imgs("data/mnist_test.csv", number_imgs);
+		NeuralNetwork* net = network_load("testing_net");
+		double score = network_predict_imgs(net, imgs, 1000);
+		printf("Score: %1.5f\n", score);
+
+		imgs_free(imgs, number_imgs);
+		network_free(net);
+
+		
+	// }
 	return 0;
 }
